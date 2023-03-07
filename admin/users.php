@@ -8,7 +8,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $offset = ($page - 1) * $limit;
-echo $offset;
+// echo $offset;
 $sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT {$offset}, {$limit}";
 $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
 
@@ -61,6 +61,10 @@ $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
                     $total_page = ceil($total_records / $limit);
                     // echo $total_page;
                     echo "<ul class='pagination admin-pagination'>";
+                    # Prev page
+                    if ($page > 1) {
+                        echo "<li><a href=users.php?page=" . ($page - 1) . ">Prev</a></li>";
+                    }
                     for ($i = 1; $i <= $total_page; $i++) {
                         # Adding Active class in active page number.
                         if ($i == $page) {
@@ -68,13 +72,16 @@ $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
                         } else {
                             $active = "";
                         }
-                        echo "<li class='$active'><a href='$HOST_NAME/users.php?page=$i'>$i</a></li>";
+                        echo "<li class='$active'><a href='users.php?page=$i'>$i</a></li>";
+                    }
+                    # Next page btn
+                    if ($total_page > $page) {
+                        echo "<li><a href=users.php?page=" . (++$page) . ">Next</a></li>";
                     }
                     echo "</ul>";
+                    // echo "total page: " .  $total_page . "<br> Current page: " . $page;
                 }
                 ?>
-
-                <!-- <li class="active"><a>1</a></li> -->
             </div>
         </div>
     </div>
