@@ -1,4 +1,5 @@
 <?php include "header.php";
+include_once "unauth.php";
 
 if (isset($_POST['save'])) {
     include "config.php";

@@ -1,5 +1,5 @@
 <?php include "header.php";
-
+include_once "unauth.php";
 include "config.php";
 $limit = 3;
 if (isset($_GET['page'])) {

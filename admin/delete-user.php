@@ -1,4 +1,5 @@
 <?php
+include_once "unauth.php";
 include_once "config.php";
 $userID = mysqli_escape_string($conn, $_GET['id']);
 $redirect = header("location: $HOST_NAME/users.php");

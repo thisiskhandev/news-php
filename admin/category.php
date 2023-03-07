@@ -1,4 +1,5 @@
-<?php include "header.php"; ?>
+<?php include "header.php";
+include_once "unauth.php"; ?>
 <div id="admin-content">
     <div class="container">
         <div class="row">

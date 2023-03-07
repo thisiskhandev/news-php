@@ -1,5 +1,5 @@
 <?php include "header.php";
-
+include_once "unauth.php";
 include "config.php";
 $userID = $_GET['id'];
 $userID ? "" : header("location: $HOST_NAME/users.php");
