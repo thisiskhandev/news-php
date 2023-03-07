@@ -1,8 +1,15 @@
 <?php include "header.php";
 
 include "config.php";
-
-$sql = "SELECT * FROM users ORDER BY user_id DESC";
+$limit = 3;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+$offset = ($page - 1) * $limit;
+echo $offset;
+$sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT {$offset}, {$limit}";
 $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
 
 ?>
@@ -41,15 +48,33 @@ $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
                         <?php
                             }
                         }
-                        mysqli_close($conn);
+                        // mysqli_close($conn);
                         ?>
                     </tbody>
                 </table>
-                <ul class='pagination admin-pagination'>
-                    <li class="active"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                </ul>
+                <?php
+                $sql1 = "SELECT * FROM users";
+                $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
+                if (mysqli_num_rows($result1)) {
+                    $total_records = mysqli_num_rows($result1);
+                    // $limit = 3;
+                    $total_page = ceil($total_records / $limit);
+                    // echo $total_page;
+                    echo "<ul class='pagination admin-pagination'>";
+                    for ($i = 1; $i <= $total_page; $i++) {
+                        # Adding Active class in active page number.
+                        if ($i == $page) {
+                            $active = "active";
+                        } else {
+                            $active = "";
+                        }
+                        echo "<li class='$active'><a href='$HOST_NAME/users.php?page=$i'>$i</a></li>";
+                    }
+                    echo "</ul>";
+                }
+                ?>
+
+                <!-- <li class="active"><a>1</a></li> -->
             </div>
         </div>
     </div>
