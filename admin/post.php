@@ -10,7 +10,7 @@ $offset = ($page - 1) * $limit;
 // echo $offset;
 
 if ($_SESSION['user_role'] == 1) {
-    $sql = "SELECT post_id, title, description, cat_name, post_date, username FROM post p 
+    $sql = "SELECT post_id, title, description, cat_name, post_date, username, post_img FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
@@ -18,7 +18,7 @@ if ($_SESSION['user_role'] == 1) {
 } elseif ($_SESSION['user_role'] == 0) {
     // echo $_SESSION['user_role']; // Current User Login Role if 0 === Editor if 1 === Admin
     // echo $_SESSION['user_id']; // Current User Login ID
-    $sql = "SELECT post_id, title, description, cat_name, post_date, username FROM post p 
+    $sql = "SELECT post_id, title, description, cat_name, post_date, username, post_img FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         WHERE author = {$_SESSION['user_id']}
@@ -40,6 +40,7 @@ if ($_SESSION['user_role'] == 1) {
                 <table class="content-table">
                     <thead>
                         <th>S.No.</th>
+                        <th>Image</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Category</th>
@@ -55,6 +56,7 @@ if ($_SESSION['user_role'] == 1) {
                         ?>
                                 <tr>
                                     <td class='id'><?php echo $keys['post_id'] ?></td>
+                                    <td style="text-align: center;"><img width="50" src="upload/<?php echo $keys['post_img'] ?>" alt="<?php echo $keys['post_img'] ?>"></td>
                                     <td><?php echo $keys['title'] ?></td>
                                     <td><?php echo $keys['description'] ?></td>
                                     <td><?php echo $keys['cat_name'] ?></td>
