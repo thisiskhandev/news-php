@@ -48,7 +48,6 @@ if (isset($_SESSION['username'])) {
                         $result = mysqli_query($conn, $sql) or die("Login Query failed!");
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $key) {
-                                session_start();
                                 $_SESSION['username']  = $key['username'];
                                 $_SESSION['user_id'] = $key['user_id'];
                                 $_SESSION['user_role'] = $key['role'];

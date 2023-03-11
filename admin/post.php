@@ -8,11 +8,23 @@ if (isset($_GET['page'])) {
 }
 $offset = ($page - 1) * $limit;
 // echo $offset;
-$sql = "SELECT * FROM post
-        LEFT JOIN category ON post.category = category.cat_id
-        LEFT JOIN users ON post.author = users.user_id
-        ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
-$result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
+
+if ($_SESSION['user_role'] == 1) {
+    $sql = "SELECT post_id, title, description, cat_name, post_date, username FROM post p 
+        LEFT JOIN category cat ON p.category = cat.cat_id
+        LEFT JOIN users usr ON p.author = usr.user_id
+        ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
+    $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
+} elseif ($_SESSION['user_role'] == 0) {
+    // echo $_SESSION['user_role']; // Current User Login Role if 0 === Editor if 1 === Admin
+    // echo $_SESSION['user_id']; // Current User Login ID
+    $sql = "SELECT post_id, title, description, cat_name, post_date, username FROM post p 
+        LEFT JOIN category cat ON p.category = cat.cat_id
+        LEFT JOIN users usr ON p.author = usr.user_id
+        WHERE author = {$_SESSION['user_id']}
+        ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
+    $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
+}
 
 ?>
 <div id="admin-content">
