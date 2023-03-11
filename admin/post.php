@@ -10,7 +10,7 @@ $offset = ($page - 1) * $limit;
 // echo $offset;
 
 if ($_SESSION['user_role'] == 1) {
-    $sql = "SELECT post_id, title, description, cat_name, post_date, username, post_img FROM post p 
+    $sql = "SELECT post_id, title, description, cat_name, cat_id, post_date, username, post_img FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
@@ -18,7 +18,7 @@ if ($_SESSION['user_role'] == 1) {
 } elseif ($_SESSION['user_role'] == 0) {
     // echo $_SESSION['user_role']; // Current User Login Role if 0 === Editor if 1 === Admin
     // echo $_SESSION['user_id']; // Current User Login ID
-    $sql = "SELECT post_id, title, description, cat_name, post_date, username, post_img FROM post p 
+    $sql = "SELECT post_id, title, description, cat_name, cat_id, post_date, username, post_img FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         WHERE author = {$_SESSION['user_id']}
@@ -53,6 +53,7 @@ if ($_SESSION['user_role'] == 1) {
                         <?php
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $keys) {
+                                // print_r($keys);
                         ?>
                                 <tr>
                                     <td class='id'><?php echo $keys['post_id'] ?></td>
@@ -63,7 +64,7 @@ if ($_SESSION['user_role'] == 1) {
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
                                     <td class='edit'><a href='edit-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] . "&cat-id=" . $keys['cat_id'] . "&file=" . $keys['post_img'] ?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>
                         <?php
                             }

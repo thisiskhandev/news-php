@@ -372,6 +372,10 @@ form {
   background: #333;
 }
 
+.pagination > li.active > a {
+  pointer-events: none !important;
+}
+
 .page_links {
   background-color: #ccc;
   font-family: arial, verdana;
