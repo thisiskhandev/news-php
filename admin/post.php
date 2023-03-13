@@ -60,7 +60,7 @@ if ($_SESSION['user_role'] == 1) {
                                     <td style="text-align: center;"><img width="50" src="upload/<?php echo $keys['post_img'] ?>" alt="<?php echo $keys['post_img'] ?>"></td>
                                     <td><?php echo $keys['title'] ?></td>
                                     <td><?php echo $keys['description'] ?></td>
-                                    <td><?php echo $keys['cat_name'] ?></td>
+                                    <td><?php echo $keys['cat_name'] ? $keys['cat_name'] : "Undefined" ?></td>
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
                                     <td class='edit'><a href='edit-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
