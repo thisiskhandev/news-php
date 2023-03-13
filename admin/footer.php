@@ -9,6 +9,14 @@
     </div>
 </div>
 <!-- /Footer -->
+<script>
+    let error = document.querySelector(".error_alert");
+    if (error) {
+        setTimeout(() => {
+            error.style.display = "none";
+        }, 5000)
+    }
+</script>
 </body>
 
 </html>

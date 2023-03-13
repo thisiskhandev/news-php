@@ -68,39 +68,42 @@ if ($_SESSION['user_role'] == 1) {
                                 </tr>
                         <?php
                             }
+                        } else {
+                            echo '<div class="mt-5 error_alert alert alert-danger" role="alert">No Post Found! <strong>Add first</strong></div>';
                         }
-                        // mysqli_close($conn);
                         ?>
                     </tbody>
                 </table>
                 <?php
-                $sql1 = "SELECT * FROM post";
-                $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
-                if (mysqli_num_rows($result1)) {
-                    $total_records = mysqli_num_rows($result1);
-                    // $limit = 3;
-                    $total_page = ceil($total_records / $limit);
-                    // echo $total_page;
-                    echo "<ul class='pagination admin-pagination'>";
-                    # Prev page
-                    if ($page > 1) {
-                        echo "<li><a href=post.php?page=" . ($page - 1) . ">Prev</a></li>";
-                    }
-                    for ($i = 1; $i <= $total_page; $i++) {
-                        # Adding Active class in active page number.
-                        if ($i == $page) {
-                            $active = "active";
-                        } else {
-                            $active = "";
+                if (mysqli_num_rows($result) > 0) {
+                    $sql1 = "SELECT * FROM post";
+                    $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
+                    if (mysqli_num_rows($result1)) {
+                        $total_records = mysqli_num_rows($result1);
+                        // $limit = 3;
+                        $total_page = ceil($total_records / $limit);
+                        // echo $total_page;
+                        echo "<ul class='pagination admin-pagination'>";
+                        # Prev page
+                        if ($page > 1) {
+                            echo "<li><a href=post.php?page=" . ($page - 1) . ">Prev</a></li>";
                         }
-                        echo "<li class='$active'><a href='post.php?page=$i'>$i</a></li>";
+                        for ($i = 1; $i <= $total_page; $i++) {
+                            # Adding Active class in active page number.
+                            if ($i == $page) {
+                                $active = "active";
+                            } else {
+                                $active = "";
+                            }
+                            echo "<li class='$active'><a href='post.php?page=$i'>$i</a></li>";
+                        }
+                        # Next page btn
+                        if ($total_page > $page) {
+                            echo "<li><a href=post.php?page=" . (++$page) . ">Next</a></li>";
+                        }
+                        echo "</ul>";
+                        // echo "total page: " .  $total_page . "<br> Current page: " . $page;
                     }
-                    # Next page btn
-                    if ($total_page > $page) {
-                        echo "<li><a href=post.php?page=" . (++$page) . ">Next</a></li>";
-                    }
-                    echo "</ul>";
-                    // echo "total page: " .  $total_page . "<br> Current page: " . $page;
                 }
                 ?>
             </div>
