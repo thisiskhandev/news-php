@@ -1,2 +1,2 @@
 # News Project on PHP ❤
-http://news-php.42web.io/
+View demo 👉 http://news-php.42web.io/
