@@ -14,7 +14,8 @@
     if (error) {
         setTimeout(() => {
             error.style.display = "none";
-        }, 5000)
+            // window.location.href = "add-post.php";
+        }, 8000)
     }
 </script>
 </body>

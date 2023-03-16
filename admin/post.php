@@ -53,7 +53,7 @@ if ($_SESSION['user_role'] == 1) {
                         <?php
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $keys) {
-                                // print_r($keys);
+                                print_r($keys);
                         ?>
                                 <tr>
                                     <td class='id'><?php echo $keys['post_id'] ?></td>
@@ -64,7 +64,7 @@ if ($_SESSION['user_role'] == 1) {
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
                                     <td class='edit'><a href='edit-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] . "&cat-id=" . $keys['cat_id'] . "&file=" . $keys['post_img'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] . "&cat=" . $keys['cat_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>
                         <?php
                             }
@@ -110,4 +110,10 @@ if ($_SESSION['user_role'] == 1) {
         </div>
     </div>
 </div>
+<?php
+echo date("Y") . "\n";
+sleep(10);
+echo date("Y");
+
+?>
 <?php include "footer.php"; ?>
