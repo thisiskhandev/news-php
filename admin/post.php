@@ -64,7 +64,7 @@ if ($_SESSION['user_role'] == 1) {
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
                                     <td class='edit'><a href='edit-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] . "&cat=" . $keys['cat_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>
                         <?php
                             }
