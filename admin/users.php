@@ -1,7 +1,7 @@
-<?php include "header.php";
+<?php include_once "header.php";
 include_once "unauth.php";
-include "config.php";
-$limit = 3;
+include_once "config.php";
+$limit = 5;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {

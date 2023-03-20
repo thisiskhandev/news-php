@@ -25,7 +25,7 @@ if (isset($_FILES['fileToUpload'])) {
     }
 
     // If file size is greater than 2mb
-    if ($file_size > 2097152) {
+    if ($file_size > 2097152) { #bytes
         $errors[] = "The file size should be less than 2mb";
     }
 

@@ -25,7 +25,6 @@ if ($_SESSION['user_role'] == 1) {
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
     $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
 }
-
 ?>
 <div id="admin-content">
     <div class="container">
@@ -53,7 +52,7 @@ if ($_SESSION['user_role'] == 1) {
                         <?php
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $keys) {
-                                print_r($keys);
+                                // print_r($keys);
                         ?>
                                 <tr>
                                     <td class='id'><?php echo $keys['post_id'] ?></td>
