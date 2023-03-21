@@ -76,7 +76,7 @@ $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
                             echo "<ul class='pagination admin-pagination'>";
                             # Prev page
                             if ($page > 1) {
-                                echo "<li><a href=http://localhost/news?page=" . ($page - 1) . ">Prev</a></li>";
+                                echo "<li><a href=$BASE_URL?page=" . ($page - 1) . ">Prev</a></li>";
                             }
                             for ($i = 1; $i <= $total_page; $i++) {
                                 # Adding Active class in active page number.
@@ -85,11 +85,11 @@ $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
                                 } else {
                                     $active = "";
                                 }
-                                echo "<li class='$active'><a href='http://localhost/news?page=$i'>$i</a></li>";
+                                echo "<li class='$active'><a href='$BASE_URL?page=$i'>$i</a></li>";
                             }
                             # Next page btn
                             if ($total_page > $page) {
-                                echo "<li><a href=http://localhost/news?page=" . (++$page) . ">Next</a></li>";
+                                echo "<li><a href=$BASE_URL?page=" . (++$page) . ">Next</a></li>";
                             }
                             echo "</ul>";
                             // echo "total page: " .  $total_page . "<br> Current page: " . $page;
