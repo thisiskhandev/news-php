@@ -39,8 +39,7 @@
                 <div class="col-md-12">
                     <ul class='menu'>
                         <?php
-                        $sql = "SELECT cat_name, cat_id FROM post p
-                        JOIN category cat ON p.category = cat.cat_id";
+                        $sql = "SELECT * FROM category WHERE category.post > 0";
 
                         $result = mysqli_query($conn, $sql) or die("Quiry failed!");
                         if (mysqli_num_rows($result) > 0) {
