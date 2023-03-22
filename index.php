@@ -1,5 +1,4 @@
 <?php include 'header.php';
-include_once "config.php";
 $limit = 5;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];

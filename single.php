@@ -1,5 +1,4 @@
 <?php include 'header.php';
-include_once "config.php";
 !$_GET['id'] ? header("location: $BASE_URL") : $id = $_GET['id'];
 $sql = "SELECT post_id, title, description, first_name, last_name, username, post_date, post_img, cat_name 
 FROM post p 

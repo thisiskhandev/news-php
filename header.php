@@ -1,5 +1,7 @@
+<?php include_once "config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,35 +15,43 @@
     <!-- Custom stlylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<!-- HEADER -->
-<div id="header">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <!-- LOGO -->
-            <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="./admin/images/news.jpg"></a>
-            </div>
-            <!-- /LOGO -->
-        </div>
-    </div>
-</div>
-<!-- /HEADER -->
-<!-- Menu Bar -->
-<div id="menu-bar">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
-                </ul>
+    <!-- HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class=" col-md-offset-4 col-md-4">
+                    <a href="index.php" id="logo"><img src="./admin/images/news.jpg"></a>
+                </div>
+                <!-- /LOGO -->
             </div>
         </div>
     </div>
-</div>
-<!-- /Menu Bar -->
+    <!-- /HEADER -->
+    <!-- Menu Bar -->
+    <div id="menu-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class='menu'>
+                        <?php
+                        $sql = "SELECT cat_name, cat_id FROM post p
+                        JOIN category cat ON p.category = cat.cat_id";
+
+                        $result = mysqli_query($conn, $sql) or die("Quiry failed!");
+                        if (mysqli_num_rows($result) > 0) {
+                            foreach ($result as $keys) {
+                                echo "<li><a href='category.php?id={$keys['cat_id']}'>{$keys['cat_name']}</a></li>";
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Menu Bar -->

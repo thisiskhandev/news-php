@@ -4,7 +4,6 @@ include "config.php";
 session_start();
 if (empty($_FILES['new-image']['name'])) {
     $file_name = $_POST['old-image'];
-    # ERROR WHILE UPDATE POST AS UPLOADED IMAGE!
     echo "<pre>";
     print_r($_FILES['new-image']);
     echo "<br>";
