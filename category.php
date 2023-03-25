@@ -24,8 +24,11 @@ $result = mysqli_query($conn, $sql) or die("Category single Query failed");
             <div class="col-md-8">
                 <!-- post-container -->
                 <div class="post-container">
-                    <h2 class="page-heading">Category: <?php echo $keys['cat_name']  ?></h2>
+
                     <?php if (mysqli_num_rows($result) > 0) {
+                        // print_r(mysqli_fetch_assoc($result));
+                        $singleCatName = mysqli_fetch_assoc($result);
+                        echo '<h2 class="page-heading">Category: ' . $singleCatName["cat_name"] . '</h2>';
                         foreach ($result as $keys) {
                     ?>
                             <div class="post-content">

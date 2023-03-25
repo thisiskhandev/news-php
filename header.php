@@ -1,4 +1,44 @@
-<?php include_once "config.php"; ?>
+<?php include_once "config.php";
+
+$page = basename($_SERVER['PHP_SELF']);
+if (str_ends_with($page, ".php")) {
+    $page = substr($page, 0, -4);
+}
+if ($page == "index") {
+    $page = "News Site";
+} elseif ($page == "single") {
+    if ($_GET['id']) {
+        $sqlTitle = "SELECT title FROM post WHERE post_id = {$_GET['id']}";
+        $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Post Title");
+        $title = mysqli_fetch_assoc($resultTitle);
+        // print_r($title);
+        $page = $title['title'] . " News";
+    } else {
+        $page = "No Post Found!";
+    }
+} elseif ($page == "category") {
+    if ($_GET['id']) {
+        $sqlTitle = "SELECT cat_name FROM category WHERE cat_id = {$_GET['id']}";
+        $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Category Title");
+        $title = mysqli_fetch_assoc($resultTitle);
+        $page = $title['cat_name'] . " News";
+    } else {
+        $page = "No Post Found!";
+    }
+} elseif ($page == "author") {
+    if ($_GET['id']) {
+        $sqlTitle = "SELECT cat_name FROM category WHERE cat_id = {$_GET['id']}";
+        $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Category Title");
+        $title = mysqli_fetch_assoc($resultTitle);
+        $page = $title['cat_name'] . " News";
+    } else {
+        $page = "No Post Found!";
+    }
+}
+
+$page =  ucwords($page);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +47,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>News</title>
+    <title><?php echo $page . " | Hassan Khan" ?></title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Font Awesome Icon -->
