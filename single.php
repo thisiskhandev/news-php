@@ -46,14 +46,44 @@ $result = mysqli_query($conn, $sql) or die("Query failed!");
                         </div>
                         <div class="post-container" style="margin: 10px 0 0 0;">
                             <div class="pagination_single">
-                                <!-- ERROR NEED A PROPER SQL QUERY FOR PREV AND NEXT -->
-                                <a href="<?php echo $BASE_URL . "/single.php?id=" . $keys['post_id'] - 1  ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i> Prev</a>
+
+                                <!-- Previous Available Post -->
+                                <?php
+                                # This will find the previous available post id
+                                $sqlPrevPost = "SELECT IFNULL(MAX(post_id), MIN(post_id) - 1) AS prev_id
+                                FROM post
+                                WHERE post_id < {$id}";
+                                $queryPrevPost = mysqli_query($conn, $sqlPrevPost) or die("Query Failed: Previous Post");
+                                $resulqPrevPost = mysqli_fetch_assoc($queryPrevPost)['prev_id'];
+                                if (!$resulqPrevPost) {
+                                    echo "";
+                                } else {
+                                ?>
+                                    <a href="<?php echo $BASE_URL . "/single.php?id=" . $resulqPrevPost  ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i> Prev</a>
+                                <?php } ?>
+
                                 <a href="<?php echo $BASE_URL ?>">Read All Posts</a>
-                                <a href="<?php echo $BASE_URL . "/single.php?id=" . $keys['post_id'] + 1  ?>">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+
+                                <!-- Next Available Post -->
+                                <?php
+                                # This will find the next available post id
+                                $sqlNextPost = "SELECT IFNULL(MIN(post_id), MAX(post_id) + 1) AS next_id
+                                FROM post
+                                WHERE post_id > {$id}";
+                                $queryNextPost = mysqli_query($conn, $sqlNextPost) or die("Query Failed: Next Post");
+                                $resulqNextPost = mysqli_fetch_assoc($queryNextPost)['next_id'];
+                                if (!$resulqNextPost) {
+                                    echo "";
+                                } else {
+                                ?>
+                                    <a href="<?php echo $BASE_URL . "/single.php?id=" . $resulqNextPost  ?>">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                <?php } ?>
                             </div>
                         </div>
                 <?php
                     }
+                } else {
+                    echo '<div class="mt-5 alert alert-danger" role="alert">No Post Found!</div>';
                 }
                 ?>
                 <!-- /post-container -->

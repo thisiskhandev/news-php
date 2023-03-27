@@ -75,11 +75,12 @@ $result = mysqli_query($conn, $sql) or die("Query failed: Search Term");
                             $total_records = mysqli_num_rows($result1);
                             // $limit = 3;
                             $total_page = ceil($total_records / $limit);
-                            // echo $total_page;
+                            // echo "Total Page" . $total_page;
+                            // echo "<br>Current Page: " . $page;
                             echo "<ul class='pagination admin-pagination'>";
                             # Prev page
                             if ($page > 1) {
-                                echo "<li><a href=$BASE_URL?search=$searchTerm&page=" . (--$page) . ">Prev</a></li>";
+                                echo "<li><a href=$BASE_URL/search.php?search=$searchTerm&page=" . (--$page) . ">Prev</a></li>";
                             }
                             for ($i = 1; $i <= $total_page; $i++) {
                                 # Adding Active class in active page number.
@@ -88,11 +89,12 @@ $result = mysqli_query($conn, $sql) or die("Query failed: Search Term");
                                 } else {
                                     $active = "";
                                 }
-                                echo "<li class='$active'><a href=$BASE_URL?search=$searchTerm&page=$i>$i</a></li>";
+                                # ERROR IN COUNTING PAGE
+                                echo "<li class=$active><a href=$BASE_URL/search.php?search=$searchTerm&page=$i>$i</a></li>";
                             }
                             # Next page btn
                             if ($total_page > $page) {
-                                echo "<li><a href=$BASE_URL?search=$searchTerm&page=" . (++$page) . ">Next</a></li>";
+                                echo "<li><a href=$BASE_URL/search.php?search=$searchTerm&page=" . (++$page) . ">Next</a></li>";
                             }
                             echo "</ul>";
                         }
