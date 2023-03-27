@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2023 at 05:52 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Generation Time: Mar 27, 2023 at 10:51 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,23 +31,23 @@ CREATE TABLE `category` (
   `cat_id` int(11) NOT NULL,
   `cat_name` varchar(30) NOT NULL,
   `post` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`cat_id`, `cat_name`, `post`) VALUES
-(3, 'HTML', 6),
+(3, 'HTML', 4),
 (7, 'TB', 1),
 (8, 'TV', 0),
 (9, 'Pickaju', 1),
 (10, 'Asj', 0),
-(11, 'abc', 1),
+(11, 'abc', 0),
 (12, '112', 0),
 (13, 'adf', 0),
 (14, 'Gala', 1),
-(15, 'Tomato', 0),
+(15, 'Tomato', 1),
 (16, 'Orange', 1),
 (17, 'Banana', 1);
 
@@ -65,7 +65,7 @@ CREATE TABLE `post` (
   `post_date` varchar(50) NOT NULL,
   `author` int(11) NOT NULL,
   `post_img` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `post`
@@ -77,12 +77,12 @@ INSERT INTO `post` (`post_id`, `title`, `description`, `category`, `post_date`, 
 (15, 'Veniam deleniti ver', 'Magnam aute voluptas', 9, '21 Mar, 2023', 13, '85-600x600.jpg'),
 (16, 'Sint dolore cumque e', 'Velit laboriosam es', 7, '21 Mar, 2023', 14, '513-600x600.jpg'),
 (17, 'Vel esse elit et n', 'Deserunt neque tempo', 16, '21 Mar, 2023', 14, '352-600x600.jpg'),
-(18, 'Et aute eveniet quo', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 15, '21 Mar, 2023', 14, '183-600x600.jpg'),
 (19, 'Fahad Tittle', 'Description testing', 17, '22 Mar, 2023', 13, 'PSW-TR1-2028-1S-I (1).png'),
 (20, 'Testing', 'Testing desc', 3, '22 Mar, 2023', 13, 'play-icon-manager-revamp.png'),
 (21, 'Testing 123', 'lkadsjflaksdfjlkasjfd', 3, '22 Mar, 2023', 13, 'call-icon-today.png'),
 (22, 'ABCD id 3', 'laskdjfalsk;dfja;lsdfh', 3, '22 Mar, 2023', 13, 'lets-talk-circle.png'),
-(23, 'So slow', 'description testing', 14, '22 Mar, 2023', 13, 'exist-pages-hutterstock_2175167713.jpg');
+(23, 'So slow', 'description testing', 14, '22 Mar, 2023', 13, 'exist-pages-hutterstock_2175167713.jpg'),
+(24, 'Top secret brook heaven RP', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 15, '27 Mar, 2023', 21, 'top secret in brook haven.png');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `users` (
   `username` varchar(30) NOT NULL,
   `password` varchar(40) NOT NULL,
   `role` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -116,7 +116,8 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `password
 (17, 'Abdul', 'Hadi', 'pandey', '21232f297a57a5a743894a0e4a801fc3', 1),
 (18, 'Wallace Pope', 'Dawn Walton', 'Omnis sequi est exc', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 0),
 (19, 'Ali', 'Bugti', 'ali', '21232f297a57a5a743894a0e4a801fc3', 1),
-(20, 'Fahad', 'Ghaffar', 'fahad', '21232f297a57a5a743894a0e4a801fc3', 0);
+(20, 'Fahad', 'Ghaffar', 'fahad', '21232f297a57a5a743894a0e4a801fc3', 0),
+(21, 'Abdul Hadi', 'Khan', 'hadi', '21232f297a57a5a743894a0e4a801fc3', 1);
 
 --
 -- Indexes for dumped tables
@@ -154,13 +155,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
