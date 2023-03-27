@@ -1,6 +1,6 @@
 <?php include 'header.php';
-!$_GET['id'] ? header("location: $BASE_URL") : $id = $_GET['id'];
-$sql = "SELECT post_id, title, description, first_name, last_name, username, post_date, post_img, cat_name 
+!$_GET['id'] ? header("location: $BASE_URL") : $id = mysqli_escape_string($conn, $_GET['id']);
+$sql = "SELECT post_id, title, description, first_name, last_name, username, post_date, post_img, cat_name, cat_id
 FROM post p 
 LEFT JOIN category cat ON p.category = cat.cat_id
 LEFT JOIN users usr ON p.author = usr.user_id 
@@ -27,7 +27,7 @@ $result = mysqli_query($conn, $sql) or die("Query failed!");
                                 <div class="post-information">
                                     <span>
                                         <i class="fa fa-tags" aria-hidden="true"></i>
-                                        <?php echo $keys['cat_name'] ?>
+                                        <a href="<?php echo $BASE_URL ?>/category.php?id=<?php echo $keys['cat_id'] ?>"><?php echo $keys['cat_name'] ?></a>
                                     </span>
                                     <span>
                                         <i class="fa fa-user" aria-hidden="true"></i>

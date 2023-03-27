@@ -4,6 +4,11 @@ $page = basename($_SERVER['PHP_SELF']);
 if (str_ends_with($page, ".php")) {
     $page = substr($page, 0, -4);
 }
+$currentPageTitle = basename($_SERVER['PHP_SELF']);
+if (str_ends_with($currentPageTitle, ".php")) {
+    $currentPageTitle = substr($currentPageTitle, 0, -4);
+}
+
 if ($page == "index") {
     $page = "News Site";
 } elseif ($page == "single") {
@@ -36,8 +41,10 @@ if ($page == "index") {
     }
 }
 
-$page =  ucwords($page);
-
+$page =  ucwords($page); # Capitalize Words
+// echo "<pre>";
+// print_r($currentPageTitle);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,11 +87,15 @@ $page =  ucwords($page);
                     <ul class='menu'>
                         <?php
                         $sql = "SELECT * FROM category WHERE category.post > 0";
-
-                        $result = mysqli_query($conn, $sql) or die("Quiry failed!");
+                        $result = mysqli_query($conn, $sql) or die("Query failed: Header Category");
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $keys) {
-                                echo "<li><a href='category.php?id={$keys['cat_id']}'>{$keys['cat_name']}</a></li>";
+                                if ($currentPageTitle == "category" && $_GET['id'] == $keys['cat_id']) {
+                                    $active = "active";
+                                } else {
+                                    $active = "";
+                                }
+                                echo "<li><a class='$active' href='category.php?id={$keys['cat_id']}'>{$keys['cat_name']}</a></li>";
                             }
                         }
                         ?>
