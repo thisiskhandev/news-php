@@ -51,14 +51,21 @@ if ($_SESSION['user_role'] == 1) {
                     <tbody>
                         <?php
                         if (mysqli_num_rows($result) > 0) {
+                            // echo "<pre>";
+                            // $imgName = mysqli_fetch_assoc($result)['post_img'];
+                            // $imgName = explode(".", $imgName);
+                            // print_r($imgName[0]);
+                            // echo "</pre>";
                             foreach ($result as $keys) {
-                                // print_r($keys);
+                                // Get image name before dot
+                                $imgName = explode(".", $keys['post_img']);
+                                $imgName = $imgName[0];
                         ?>
                                 <tr>
                                     <td class='id'><?php echo $keys['post_id'] ?></td>
-                                    <td style="text-align: center;"><img width="50" src="upload/<?php echo $keys['post_img'] ?>" alt="<?php echo $keys['post_img'] ?>"></td>
+                                    <td style="text-align: center;"><img width="50" src="upload/<?php echo $keys['post_img'] ?>" alt="<?php echo $imgName ?>" loading="lazy"></td>
                                     <td><?php echo $keys['title'] ?></td>
-                                    <td><?php echo $keys['description'] ?></td>
+                                    <td><?php echo substr($keys['description'], 0, 90) ?>...</td>
                                     <td><?php echo $keys['cat_name'] ? $keys['cat_name'] : "Undefined" ?></td>
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>

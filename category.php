@@ -2,7 +2,7 @@
 
 !$_GET['id'] ? header("location: $BASE_URL")  : $catID = $_GET['id'];
 
-$limit = 2;
+$limit = 5;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
