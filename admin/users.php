@@ -29,6 +29,7 @@ $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
                         <th>Full Name</th>
                         <th>User Name</th>
                         <th>Role</th>
+                        <th>Posts Published</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </thead>
@@ -42,6 +43,7 @@ $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
                                     <td><?php echo $keys['first_name'] . " " . $keys['last_name'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
                                     <td><?php echo $keys['role'] == 1 ? "Admin" : "Editor" ?></td>
+                                    <td><?php echo $keys['num_of_posts']?></td>
                                     <td class='edit'><a href='update-user.php?id=<?php echo $keys['user_id'] ?>'><i class='fa fa-edit'></i></a></td>
                                     <td class='delete'><a href='delete-user.php?id=<?php echo $keys['user_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>

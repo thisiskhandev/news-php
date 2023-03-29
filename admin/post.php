@@ -10,7 +10,7 @@ $offset = ($page - 1) * $limit;
 // echo $offset;
 
 if ($_SESSION['user_role'] == 1) {
-    $sql = "SELECT post_id, title, description, cat_name, cat_id, post_date, username, post_img FROM post p 
+    $sql = "SELECT post_id, title, description, cat_name, cat_id, post_date, username, post_img, user_id FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
@@ -70,7 +70,7 @@ if ($_SESSION['user_role'] == 1) {
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
                                     <td class='edit'><a href='edit-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='delete'><a href='delete-post.php?id=<?php echo $keys['post_id'] . "&uid=" . $keys['user_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>
                         <?php
                             }
