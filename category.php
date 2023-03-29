@@ -9,7 +9,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $offset = ($page - 1) * $limit;
-$sql = "SELECT post_id, title, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img FROM post p 
+$sql = "SELECT post_id, title, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img, author FROM post p 
 LEFT JOIN category cat ON p.category = cat.cat_id
 LEFT JOIN users usr ON p.author = usr.user_id
 WHERE p.category = {$catID}
@@ -46,11 +46,11 @@ $result = mysqli_query($conn, $sql) or die("Category single Query failed");
                                             <div class="post-information">
                                                 <span>
                                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                                    <a href='category.php'><?php echo $keys['cat_name'] == "" ? "Uncategorized" : $keys['cat_name']; ?></a>
+                                                    <a href='category.php?id=<?php echo $keys['cat_id'] ?>'><?php echo $keys['cat_name'] == "" ? "Uncategorized" : $keys['cat_name']; ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                                    <a href='author.php'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
+                                                    <a href='author.php?aid=<?php echo $keys['author']?>'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -72,8 +72,8 @@ $result = mysqli_query($conn, $sql) or die("Category single Query failed");
                     }
                     if (mysqli_num_rows($result) > 0) {
                         $sql1 = "SELECT * FROM post p 
-                        LEFT JOIN category cat ON p.category = cat.cat_id
-                        LEFT JOIN users usr ON p.author = usr.user_id
+                        -- LEFT JOIN category cat ON p.category = cat.cat_id
+                        -- LEFT JOIN users usr ON p.author = usr.user_id
                         WHERE p.category = {$catID}
                         ORDER BY p.post_id DESC";
                         $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
@@ -105,7 +105,8 @@ $result = mysqli_query($conn, $sql) or die("Category single Query failed");
                         }
                     }
                     ?>
-                </div><!-- /post-container -->
+                </div>
+                <!-- /post-container -->
             </div>
             <?php include 'sidebar.php'; ?>
         </div>

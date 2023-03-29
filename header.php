@@ -18,7 +18,7 @@ if ($page == "index.php") {
         $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Post Title");
         $title = mysqli_fetch_assoc($resultTitle);
         // print_r($title);
-        $page = $title['title'] . " News";
+        $page = $title ? $title['title'] : "Title" . " News";
     } else {
         $page = "No Post Found!";
     }
@@ -27,16 +27,16 @@ if ($page == "index.php") {
         $sqlTitle = "SELECT cat_name FROM category WHERE cat_id = {$_GET['id']}";
         $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Category Title");
         $title = mysqli_fetch_assoc($resultTitle);
-        $page = $title['cat_name'] . " News";
+        $page = $title ? $title['cat_name'] : "Category" . " News";
     } else {
         $page = "No Post Found!";
     }
 } elseif ($page == "author.php") {
-    if ($_GET['id']) {
-        $sqlTitle = "SELECT cat_name FROM category WHERE cat_id = {$_GET['id']}";
-        $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Category Title");
+    if ($_GET['aid']) {
+        $sqlTitle = "SELECT author FROM post WHERE author = {$_GET['aid']}";
+        $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Author Title");
         $title = mysqli_fetch_assoc($resultTitle);
-        $page = $title['cat_name'] . " News";
+        $page = $title ? $title['author'] : "Author" . " News";
     } else {
         $page = "No Post Found!";
     }

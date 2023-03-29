@@ -6,7 +6,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $offset = ($page - 1) * $limit;
-$sql = "SELECT post_id, title, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img FROM post p 
+$sql = "SELECT post_id, title, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img, author FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
@@ -45,7 +45,7 @@ $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                                    <a href='author.php'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
+                                                    <a href='author.php?aid=<?php echo $keys['author']?>'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
