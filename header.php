@@ -1,6 +1,7 @@
 <?php include_once "config.php";
-/*
 $page = basename($_SERVER['PHP_SELF']);
+$currentPageTitle = basename($_SERVER['PHP_SELF']);
+/*
 if (str_ends_with($page, ".php")) {
     $page = substr($page, 0, -4);
 }
@@ -8,9 +9,10 @@ $currentPageTitle = basename($_SERVER['PHP_SELF']);
 if (str_ends_with($currentPageTitle, ".php")) {
     $currentPageTitle = substr($currentPageTitle, 0, -4);
 }
-if ($page == "index") {
+*/
+if ($page == "index.php") {
     $page = "News Site";
-} elseif ($page == "single") {
+} elseif ($page == "single.php") {
     if ($_GET['id']) {
         $sqlTitle = "SELECT title FROM post WHERE post_id = {$_GET['id']}";
         $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Post Title");
@@ -20,7 +22,7 @@ if ($page == "index") {
     } else {
         $page = "No Post Found!";
     }
-} elseif ($page == "category") {
+} elseif ($page == "category.php") {
     if ($_GET['id']) {
         $sqlTitle = "SELECT cat_name FROM category WHERE cat_id = {$_GET['id']}";
         $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Category Title");
@@ -29,7 +31,7 @@ if ($page == "index") {
     } else {
         $page = "No Post Found!";
     }
-} elseif ($page == "author") {
+} elseif ($page == "author.php") {
     if ($_GET['id']) {
         $sqlTitle = "SELECT cat_name FROM category WHERE cat_id = {$_GET['id']}";
         $resultTitle = mysqli_query($conn, $sqlTitle) or die("Query failed: Category Title");
@@ -41,11 +43,6 @@ if ($page == "index") {
 }
 
 $page =  ucwords($page); # Capitalize Words
-// echo "<pre>";
-// print_r($currentPageTitle);
-// echo "</pre>";
-*/
-$page = "testing page";
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +55,7 @@ $page = "testing page";
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?php echo $page . " | Hassan Khan" ?></title>
     <!-- Bootstrap -->
+    <link rel="icon" type="image/x-icon" href="./admin/images/fav.jpg">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="css/font-awesome.css">
@@ -74,7 +72,7 @@ $page = "testing page";
             <div class="row">
                 <!-- LOGO -->
                 <div class=" col-md-offset-4 col-md-4">
-                    <a href="index.php" id="logo"><img src="./admin/images/news.jpg"></a>
+                    <a href="<?php echo $BASE_URL ?>" id="logo"><img src="./admin/images/news.jpg"></a>
                 </div>
                 <!-- /LOGO -->
             </div>
@@ -88,12 +86,11 @@ $page = "testing page";
                 <div class="col-md-12">
                     <ul class='menu'>
                         <?php
-                        /*
                         $sql = "SELECT * FROM category WHERE category.post > 0";
                         $result = mysqli_query($conn, $sql) or die("Query failed: Header Category");
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $keys) {
-                                if ($currentPageTitle == "category" && $_GET['id'] == $keys['cat_id']) {
+                                if ($currentPageTitle == "category.php" && $_GET['id'] == $keys['cat_id']) {
                                     $active = "active";
                                 } else {
                                     $active = "";
@@ -101,7 +98,6 @@ $page = "testing page";
                                 echo "<li><a class='$active' href='category.php?id={$keys['cat_id']}'>{$keys['cat_name']}</a></li>";
                             }
                         }
-                        */
                         ?>
                     </ul>
                 </div>
