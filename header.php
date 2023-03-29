@@ -1,5 +1,5 @@
 <?php include_once "config.php";
-
+/*
 $page = basename($_SERVER['PHP_SELF']);
 if (str_ends_with($page, ".php")) {
     $page = substr($page, 0, -4);
@@ -8,7 +8,6 @@ $currentPageTitle = basename($_SERVER['PHP_SELF']);
 if (str_ends_with($currentPageTitle, ".php")) {
     $currentPageTitle = substr($currentPageTitle, 0, -4);
 }
-
 if ($page == "index") {
     $page = "News Site";
 } elseif ($page == "single") {
@@ -45,7 +44,10 @@ $page =  ucwords($page); # Capitalize Words
 // echo "<pre>";
 // print_r($currentPageTitle);
 // echo "</pre>";
+*/
+$page = "testing page";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,6 +88,7 @@ $page =  ucwords($page); # Capitalize Words
                 <div class="col-md-12">
                     <ul class='menu'>
                         <?php
+                        /*
                         $sql = "SELECT * FROM category WHERE category.post > 0";
                         $result = mysqli_query($conn, $sql) or die("Query failed: Header Category");
                         if (mysqli_num_rows($result) > 0) {
@@ -98,6 +101,7 @@ $page =  ucwords($page); # Capitalize Words
                                 echo "<li><a class='$active' href='category.php?id={$keys['cat_id']}'>{$keys['cat_name']}</a></li>";
                             }
                         }
+                        */
                         ?>
                     </ul>
                 </div>
