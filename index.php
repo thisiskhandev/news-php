@@ -40,11 +40,11 @@ $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
                                             <div class="post-information">
                                                 <span>
                                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                                    <!-- ?id={$keys['cat_id']} -->
                                                     <a href='category.php?id=<?php echo $keys['cat_id'] ?>'><?php echo $keys['cat_name'] == "" ? "Uncategorized" : $keys['cat_name']; ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
+                                                    <!-- ERROR NEED TO FIX EMPTY CAT ID -->
                                                     <a href='author.php?aid=<?php echo $keys['author']?>'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
                                                 </span>
                                                 <span>
