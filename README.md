@@ -1,5 +1,5 @@
 # News Project on PHP 
-View demo 👉 http://news-php.42web.io/
+View demo 👉 https://news-php.42web.io/
 
 <h2>To-do Features</h2>
 
