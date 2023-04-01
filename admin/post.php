@@ -10,7 +10,7 @@ $offset = ($page - 1) * $limit;
 // echo $offset;
 
 if ($_SESSION['user_role'] == 1) {
-    $sql = "SELECT post_id, title, description, cat_name, cat_id, post_date, username, post_img, user_id FROM post p 
+    $sql = "SELECT post_id, title, excerpt, description, cat_name, cat_id, post_date, username, post_img, user_id FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
@@ -18,7 +18,7 @@ if ($_SESSION['user_role'] == 1) {
 } elseif ($_SESSION['user_role'] == 0) {
     // echo $_SESSION['user_role']; // Current User Login Role if 0 === Editor if 1 === Admin
     // echo $_SESSION['user_id']; // Current User Login ID
-    $sql = "SELECT post_id, title, description, cat_name, cat_id, post_date, username, post_img FROM post p 
+    $sql = "SELECT post_id, title, excerpt, description, cat_name, cat_id, post_date, username, post_img FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         WHERE author = {$_SESSION['user_id']}
@@ -36,6 +36,14 @@ if ($_SESSION['user_role'] == 1) {
                 <a class="add-new" href="add-post.php">add post</a>
             </div>
             <div class="col-md-12">
+                <!-- <div class="filter" style="width: 300px;">
+                    <select class="form-control" name="" id="">
+                        <option value="" disabled selected>Filter by</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                    </select>
+                </div> -->
                 <table class="content-table">
                     <thead>
                         <th>S.No.</th>
@@ -65,7 +73,8 @@ if ($_SESSION['user_role'] == 1) {
                                     <td class='id'><?php echo $keys['post_id'] ?></td>
                                     <td style="text-align: center;"><img width="50" src="upload/<?php echo $keys['post_img'] ?>" alt="<?php echo $imgName ?>" loading="lazy"></td>
                                     <td><?php echo $keys['title'] ?></td>
-                                    <td><?php echo substr($keys['description'], 0, 90) ?>...</td>
+                                    <td><?php echo substr($keys['excerpt'], 0, 90) ?>...</td>
+                                    <!-- <td><div><?php echo substr($keys['description'], 0, 50) ?>...</div></td> -->
                                     <td><?php echo $keys['cat_name'] ? $keys['cat_name'] : "Undefined" ?></td>
                                     <td><?php echo $keys['post_date'] ?></td>
                                     <td><?php echo $keys['username'] ?></td>
@@ -82,7 +91,7 @@ if ($_SESSION['user_role'] == 1) {
                 </table>
                 <?php
                 if (mysqli_num_rows($result) > 0) {
-                    $sql1 = "SELECT * FROM post";
+                    $sql1 = "SELECT post_id FROM post";
                     $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
                     if (mysqli_num_rows($result1)) {
                         $total_records = mysqli_num_rows($result1);

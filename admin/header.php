@@ -4,6 +4,16 @@ include "config.php";
 if (!isset($_SESSION['username'])) {
     header("location: $HOST_NAME");
 }
+$sqlSetting = "SELECT * FROM settings";
+$resultSetting = mysqli_query($conn, $sqlSetting) or die("Query failed: Logo & copyright see settings");
+// $site_name = mysqli_fetch_assoc($result)['site_name'];
+if (mysqli_num_rows($resultSetting) > 0) {
+    foreach ($resultSetting as $siteData) {
+        $site_name = $siteData['site_name'];
+        $site_logo = $siteData['site_logo'];
+        $site_footer = $siteData['site_footer'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,14 +23,15 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ADMIN Panel</title>
+    <title><?php echo $site_name ? $site_name : "NEWS" ?> | ADMIN Panel</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="../css/font-awesome.css">
     <!-- Custom stlylesheet -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.18/css/froala_editor.min.css" integrity="sha512-zQ/wN068DBWX8DC2RvI4k/NPIQ2rVg1pjCqb5GPNVT12jDPoh2wYhP8P9UqPgLgJtP7V8C8oAIiCgQmUrjfTTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -32,7 +43,7 @@ if (!isset($_SESSION['username'])) {
             <div class="row flex_center">
                 <!-- LOGO -->
                 <div class="col-md-4">
-                    <a href="post.php"><img class="logo" class="img-fluid" width="200" src="images/news.jpg"></a>
+                    <a href="post.php"><img class="logo" class="img-fluid" width="200" src="images/<?php echo $site_logo ? $site_logo : 'news.jpg' ?>"></a>
                 </div>
                 <!-- /LOGO -->
                 <!-- LOGO-Out -->
@@ -65,6 +76,9 @@ if (!isset($_SESSION['username'])) {
                             </li>
                             <li>
                                 <a href="users.php">Users</a>
+                            </li>
+                            <li>
+                                <a href="settings.php">Settings</a>
                             </li>
                         <?php
                         }

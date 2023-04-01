@@ -6,7 +6,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $offset = ($page - 1) * $limit;
-$sql = "SELECT post_id, title, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img, author FROM post p 
+$sql = "SELECT post_id, title, excerpt, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img, author FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
@@ -45,16 +45,18 @@ $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
                                                     <!-- ERROR NEED TO FIX EMPTY CAT ID -->
-                                                    <a href='author.php?aid=<?php echo $keys['author']?>'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
+                                                    <a href='author.php?aid=<?php echo $keys['author'] ?>'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                                     <?php echo $keys['post_date']; ?>
                                                 </span>
                                             </div>
-                                            <p class="description">
-                                                <?php echo $keys['description']; ?>....
-                                            </p>
+                                            <div>
+                                                <p class="description">
+                                                    <?php echo $keys['excerpt']; ?>...
+                                                </p>
+                                            </div>
                                             <a class='read-more pull-right' href='single.php?id=<?php echo $keys["post_id"]; ?>'>read more</a>
                                         </div>
                                     </div>
@@ -66,7 +68,7 @@ $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
                         echo "<h2>No Post Found!</h2>";
                     }
                     if (mysqli_num_rows($result) > 0) {
-                        $sql1 = "SELECT * FROM post";
+                        $sql1 = "SELECT post_id FROM post";
                         $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
                         if (mysqli_num_rows($result1)) {
                             $total_records = mysqli_num_rows($result1);

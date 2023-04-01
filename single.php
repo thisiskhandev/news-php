@@ -39,9 +39,9 @@ $result = mysqli_query($conn, $sql) or die("Query failed!");
                                     </span>
                                 </div>
                                 <img src="<?php echo !file_exists($imagePath) ? $defaultPath : $imagePath ?>" alt="<?php echo !file_exists($imagePath) ? "Image not found 404" : substr($keys['post_img'], 0, -4) ?>" />
-                                <p class="description">
+                                <article class="description">
                                     <?php echo $keys['description']; ?>
-                                </p>
+                                </article>
                             </div>
                         </div>
                         <div class="post-container" style="margin: 10px 0 0 0;">

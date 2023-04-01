@@ -34,7 +34,8 @@ $result1 = mysqli_query($conn, $sql1) or die("Query failed!");
                             </div>
                             <div class="form-group">
                                 <label for="postdesc">Description</label>
-                                <textarea name="postdesc" class="form-control" rows="5" required><?php echo $keys['description'] ?></textarea>
+                                <!-- <textarea name="postdesc" class="form-control" rows="10" required><?php echo $keys['description'] ?></textarea> -->
+                                <textarea name="postdesc" class="tinymce form-control" rows="10"><?php echo $keys['description'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="category">Category</label>

@@ -11,11 +11,16 @@ include_once "config.php" ?>
                 <form action="save-post.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="post_title">Title</label>
-                        <input type="text" name="post_title" class="form-control" autocomplete="off" required>
+                        <input type="text" name="post_title" class="form-control" autocomplete="off" placeholder="Add Post Title" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1"> Description</label>
-                        <textarea name="postdesc" class="form-control" rows="5" required></textarea>
+                        <label for="">Excerpt</label>
+                        <textarea name="excerpt" id="excerpt" class="excerpt form-control" rows="3" placeholder="Add Max 2-3 lines" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Description</label>
+                        <!-- <textarea name="postdesc" class="form-control" rows="10" required></textarea> -->
+                        <textarea name="postdesc" class="form-control tinymce" placeholder="Write Description..." rows="10"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Category</label>

@@ -560,6 +560,13 @@ i.fa {
   width: 100%;
   height: 100%;
 }
+.tox-promotion,
+span.tox-statusbar__branding {
+    display: none;
+}
+textarea.excerpt {
+  resize: none;
+}
 /* ===================== */
 /* FrontEnd CSS END */
 /* ===================== */

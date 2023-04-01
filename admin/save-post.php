@@ -35,12 +35,13 @@ if (isset($_FILES['fileToUpload'])) {
 
         $title = mysqli_escape_string($conn, $_POST['post_title']);
         $desc = mysqli_escape_string($conn, $_POST['postdesc']);
+        $excerpt = mysqli_escape_string($conn, $_POST['excerpt']);
         $cat = mysqli_escape_string($conn, $_POST['category']);
         $date = date("d M, Y");
         $author = $_SESSION['user_id'];
         // $file_name = mysqli_escape_string($conn, $file_name);
 
-        $sql = "INSERT INTO post(title, description, category, post_date, author, post_img) VALUES('{$title}', '{$desc}', {$cat}, '{$date}', {$author}, '{$file_name}');";
+        $sql = "INSERT INTO post(title, excerpt, description, category, post_date, author, post_img) VALUES('{$title}', '{$excerpt}', '{$desc}', {$cat}, '{$date}', {$author}, '{$file_name}');";
         $sql .= "UPDATE category SET post = post + 1 WHERE cat_id = {$cat};";
         $sql .= "UPDATE users SET num_of_posts = num_of_posts + 1 WHERE user_id = {$author}";
 
