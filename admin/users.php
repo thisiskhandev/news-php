@@ -1,6 +1,5 @@
 <?php include_once "header.php";
 include_once "unauth.php";
-include_once "config.php";
 $limit = 5;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -88,4 +87,4 @@ $result = mysqli_query($conn, $sql) or die("Users view Query failed!");
         </div>
     </div>
 </div>
-<?php include "header.php"; ?>
+<?php include_once "footer.php"; ?>

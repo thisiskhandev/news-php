@@ -13,3 +13,4 @@ View demo 👉 https://news-php.42web.io/
 #### Migrate to B5
 #### Add default category name
 #### Add Filter by on admin post.php
+#### Need to add Sanitize method on each fields

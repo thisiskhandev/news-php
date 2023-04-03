@@ -15,6 +15,15 @@ if (mysqli_num_rows($resultSetting) > 0) {
         $site_footer = $siteData['site_footer'];
     }
 }
+# Idle signout (NEED TO IMPORVISE THIS CODE TO UPDATE TIME() FUNCTION ON USER INTERACTION)
+if (time() - $_SESSION['last_activity'] > 300) { // 5mins of inactivity
+    session_unset();
+    session_destroy();
+    header("location: $HOST_NAME");
+} else {
+    // Update the last activity timestamp
+    $_SESSION['last_activity'] = time();
+}
 ?>
 
 <!DOCTYPE html>

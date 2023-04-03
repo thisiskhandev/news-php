@@ -51,6 +51,7 @@ if (isset($_SESSION['username'])) {
                                 $_SESSION['username']  = $key['username'];
                                 $_SESSION['user_id'] = $key['user_id'];
                                 $_SESSION['user_role'] = $key['role'];
+                                $_SESSION['last_activity'] = time();
                                 header("location: $HOST_NAME/post.php");
                             }
                         } else {

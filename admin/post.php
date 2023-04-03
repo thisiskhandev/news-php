@@ -25,6 +25,7 @@ if ($_SESSION['user_role'] == 1) {
         ORDER BY p.post_id DESC LIMIT {$offset}, {$limit}";
     $result = mysqli_query($conn, $sql) or die("Posts view Query failed!");
 }
+
 ?>
 <div id="admin-content">
     <div class="container">
