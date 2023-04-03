@@ -5,7 +5,7 @@ $postID = $_GET['id'];
 
 !$postID ? header("location: $HOST_NAME/post.php") : "";
 
-$sql1 = "SELECT post_id, title, description, cat_name, cat_id, post_img FROM post 
+$sql1 = "SELECT post_id, title, excerpt, description, cat_name, cat_id, post_img FROM post 
 INNER JOIN category cat ON post.category = cat.cat_id
 WHERE post_id = $postID";
 $result1 = mysqli_query($conn, $sql1) or die("Query failed!");
@@ -31,6 +31,10 @@ $result1 = mysqli_query($conn, $sql1) or die("Query failed!");
                                 <label for="post_title">Title</label>
                                 <input type="hidden" name="post_id" value="<?php echo $postID ?>">
                                 <input type="text" name="post_title" class="form-control" autocomplete="off" required value="<?php echo $keys['title'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Excerpt</label>
+                                <textarea name="excerpt" class="excerpt form-control" rows="3" placeholder="Add Max 2-3 lines" value="<?php echo $keys['excerpt'] ?>" required><?php echo $keys['excerpt'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="postdesc">Description</label>

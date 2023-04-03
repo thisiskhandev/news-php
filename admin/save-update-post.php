@@ -11,12 +11,12 @@ if (empty($_FILES['new-image']['name'])) {
     echo "</pre>";
     $post_id = mysqli_escape_string($conn, $_POST['post_id']);
     $title = mysqli_escape_string($conn, $_POST['post_title']);
-    $title = mysqli_escape_string($conn, $_POST['post_title']);
+    $excerpt = mysqli_escape_string($conn, $_POST['excerpt']);
     $desc = mysqli_escape_string($conn, $_POST['postdesc']);
     $cat = mysqli_escape_string($conn, $_POST['category']);
     $date = date("d M, Y");
 
-    $sql = "UPDATE post SET title = '{$title}', description = '{$desc}', category = '{$cat}', post_date = '{$date}' WHERE post_id = {$post_id}";
+    $sql = "UPDATE post SET title = '{$title}', excerpt = '{$excerpt}' ,description = '{$desc}', category = '{$cat}', post_date = '{$date}' WHERE post_id = {$post_id}";
 
     if (mysqli_query($conn, $sql)) {
         header("location: $HOST_NAME/post.php");
@@ -51,12 +51,13 @@ if (empty($_FILES['new-image']['name'])) {
         move_uploaded_file($file_tmp, "upload/" . $file_name);
         $post_id = mysqli_escape_string($conn, $_POST['post_id']);
         $title = mysqli_escape_string($conn, $_POST['post_title']);
+        $excerpt = mysqli_escape_string($conn, $_POST['excerpt']);
         $desc = mysqli_escape_string($conn, $_POST['postdesc']);
         $cat = mysqli_escape_string($conn, $_POST['category']);
         $date = date("d M, Y");
         // $file_name = mysqli_escape_string($conn, $file_name);
 
-        $sql = "UPDATE post SET title = '{$title}', description = '{$desc}', category = {$cat}, post_date = '{$date}', post_img = '{$file_name}'
+        $sql = "UPDATE post SET title = '{$title}', excerpt = '{$excerpt}' ,description = '{$desc}', category = {$cat}, post_date = '{$date}', post_img = '{$file_name}'
         WHERE post_id = {$post_id}";
         // $sql .= "UPDATE category SET post = post + 1 WHERE cat_id = {$cat}";
 

@@ -18,7 +18,7 @@ if ($_SESSION['user_role'] == 1) {
 } elseif ($_SESSION['user_role'] == 0) {
     // echo $_SESSION['user_role']; // Current User Login Role if 0 === Editor if 1 === Admin
     // echo $_SESSION['user_id']; // Current User Login ID
-    $sql = "SELECT post_id, title, excerpt, description, cat_name, cat_id, post_date, username, post_img FROM post p 
+    $sql = "SELECT post_id, title, excerpt, description, cat_name, cat_id, post_date, username, post_img, user_id FROM post p 
         LEFT JOIN category cat ON p.category = cat.cat_id
         LEFT JOIN users usr ON p.author = usr.user_id
         WHERE author = {$_SESSION['user_id']}
@@ -49,7 +49,7 @@ if ($_SESSION['user_role'] == 1) {
                         <th>S.No.</th>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Description</th>
+                        <th>Description (Excerpt)</th>
                         <th>Category</th>
                         <th>Date</th>
                         <th>Author</th>
@@ -91,7 +91,7 @@ if ($_SESSION['user_role'] == 1) {
                 </table>
                 <?php
                 if (mysqli_num_rows($result) > 0) {
-                    $sql1 = "SELECT post_id FROM post";
+                    $sql1 = "SELECT post_id FROM post WHERE author = {$_SESSION['user_id']}";
                     $result1 = mysqli_query($conn, $sql1) or die("Pagination Calculation Query failed!");
                     if (mysqli_num_rows($result1)) {
                         $total_records = mysqli_num_rows($result1);

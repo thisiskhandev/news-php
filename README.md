@@ -13,4 +13,3 @@ View demo 👉 https://news-php.42web.io/
 #### Migrate to B5
 #### Add default category name
 #### Add Filter by on admin post.php
-##### Dynamic Header and Footer

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2023 at 10:58 PM
+-- Generation Time: Apr 04, 2023 at 12:03 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -39,7 +39,7 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`cat_id`, `cat_name`, `post`) VALUES
 (3, 'HTML', 5),
-(7, 'TB', 1),
+(7, 'TB', 0),
 (8, 'TV', 0),
 (9, 'Pickaju', 2),
 (10, 'Asj', 0),
@@ -75,8 +75,7 @@ CREATE TABLE `post` (
 INSERT INTO `post` (`post_id`, `title`, `excerpt`, `description`, `category`, `post_date`, `author`, `post_img`) VALUES
 (8, 'Adil', 'ABC 123', 'ABC 123', 1, '13 Mar, 2023', 13, 'play-icon-manager-revamp.png'),
 (15, 'Veniam deleniti ver', 'Magnam aute voluptas', 'Magnam aute voluptas', 9, '21 Mar, 2023', 13, '85-600x600.jpg'),
-(16, 'Sint dolore cumque e', 'Velit laboriosam es', 'Velit laboriosam es', 7, '21 Mar, 2023', 14, '513-600x600.jpg'),
-(17, 'Vel esse elit et n', 'Deserunt neque tempo', 'Deserunt neque tempo', 16, '21 Mar, 2023', 14, '352-600x600.jpg'),
+(17, 'Lorem Ipsum is simply', 'Lorem Ipsum is simply', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, <strong>and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</strong></p>', 3, '04 Apr, 2023', 14, '352-600x600.jpg'),
 (19, 'Fahad Tittle', 'Excerpt testing', 'Excerpt testing', 17, '22 Mar, 2023', 13, 'PSW-TR1-2028-1S-I (1).png'),
 (23, 'So slow', 'Excerpt testing', 'description testing', 14, '22 Mar, 2023', 13, 'exist-pages-hutterstock_2175167713.jpg'),
 (24, 'Top secret brook heaven RP', 'Excerpt testing', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a href=\"https://bootstrapdocs.com/v3.3.5/docs/css/?#forms\">Test link</a>', 15, '31 Mar, 2023', 21, 'top secret in brook haven.png'),
@@ -134,7 +133,7 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `num_of_p
 (11, 'Devin English', 'Anastasia Baxter', 'Molestiae voluptatem', 0, 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 1),
 (12, 'Aspen Conley', 'Amal Salazar', 'Sint dolorum eu mole', 0, 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 1),
 (13, 'Hassan', 'Khan', 'hassan', 5, '21232f297a57a5a743894a0e4a801fc3', 1),
-(14, 'Salman', 'Sheikh', 'sallu', 2, '21232f297a57a5a743894a0e4a801fc3', 0),
+(14, 'Salman', 'Sheikh', 'sallu', 1, '21232f297a57a5a743894a0e4a801fc3', 0),
 (16, 'Xyla Thornton', 'Casey Frederick', 'Quasi alias ullamco ', 0, 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 0),
 (17, 'Abdul', 'Hadi', 'pandey', 0, '21232f297a57a5a743894a0e4a801fc3', 1),
 (18, 'Wallace Pope', 'Dawn Walton', 'Omnis sequi est exc', 0, 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 0),

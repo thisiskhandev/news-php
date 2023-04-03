@@ -1,4 +1,5 @@
 <?php include_once "header.php";
+include_once "unauth.php";
 include_once "config.php";
 $sql = "SELECT * FROM settings";
 $result = mysqli_query($conn, $sql) or die("Query failed: Setting fetch");
