@@ -9,7 +9,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $offset = ($page - 1) * $limit;
-$sql = "SELECT post_id, title, description, first_name, last_name, cat_id, cat_name, post_date, username, post_img, author FROM post p 
+$sql = "SELECT post_id, title, excerpt, first_name, last_name, cat_id, cat_name, post_date, username, post_img, author FROM post p 
 LEFT JOIN category cat ON p.category = cat.cat_id
 LEFT JOIN users usr ON p.author = usr.user_id
 WHERE p.author = {$authorID}
@@ -59,7 +59,7 @@ $result = mysqli_query($conn, $sql) or die("Query Failed: Author Page");
                                                 </span>
                                             </div>
                                             <p class="description">
-                                                <?php echo $keys['description']; ?>....
+                                                <?php echo $keys['excerpt']; ?>....
                                             </p>
                                             <a class='read-more pull-right' href='single.php?id=<?php echo $keys["post_id"]; ?>'>read more</a>
                                         </div>

@@ -1,6 +1,6 @@
 <?php include 'header.php';
 !$_GET['id'] ? header("location: $BASE_URL") : $id = mysqli_escape_string($conn, $_GET['id']);
-$sql = "SELECT post_id, title, description, first_name, last_name, username, post_date, post_img, cat_name, cat_id
+$sql = "SELECT post_id, title, description, first_name, last_name, username, post_date, post_img, cat_name, cat_id, author
 FROM post p 
 LEFT JOIN category cat ON p.category = cat.cat_id
 LEFT JOIN users usr ON p.author = usr.user_id 
@@ -31,7 +31,7 @@ $result = mysqli_query($conn, $sql) or die("Query failed!");
                                     </span>
                                     <span>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <a href='author.php'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
+                                        <a href='author.php?aid=<?php echo $keys["author"] ?>'><?php echo $keys['first_name'] . " " . $keys['last_name']; ?></a>
                                     </span>
                                     <span>
                                         <i class="fa fa-calendar" aria-hidden="true"></i>

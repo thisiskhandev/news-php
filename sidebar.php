@@ -17,7 +17,7 @@
     <section class="recent-post-container">
         <h4>Recent Posts</h4>
         <?php
-        $sql = "SELECT post_id, title, post_img, cat_name, post_date FROM post p
+        $sql = "SELECT post_id, title, post_img, cat_id, cat_name, post_date FROM post p
         LEFT JOIN category cat ON p.category = cat.cat_id
         ORDER BY p.post_id DESC LIMIT 0, 5";
         $result = mysqli_query($conn, $sql) or die("Query failed!");
@@ -34,7 +34,7 @@
                         <h5><a href='single.php?id=<?php echo $keys["post_id"]; ?>'><?php echo $keys['title']; ?></a></h5>
                         <span>
                             <i class="fa fa-tags" aria-hidden="true"></i>
-                            <a href='category.php'><?php echo $keys['cat_name'] == "" ? "Uncategorized" : $keys['cat_name']; ?></a>
+                            <a href="category.php?id=<?php echo $keys['cat_id'] ?>"><?php echo $keys['cat_name'] == "" ? "Uncategorized" : $keys['cat_name']; ?></a>
                         </span>
                         <span>
                             <i class="fa fa-calendar" aria-hidden="true"></i>
