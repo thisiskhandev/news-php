@@ -43,6 +43,18 @@ if ($page == "index.php") {
 }
 
 $page =  ucwords($page); # Capitalize Words
+
+$sqlSetting = "SELECT * FROM settings";
+$resultSetting = mysqli_query($conn, $sqlSetting) or die("Query failed: Logo & copyright see settings");
+// $site_name = mysqli_fetch_assoc($result)['site_name'];
+if (mysqli_num_rows($resultSetting) > 0) {
+    foreach ($resultSetting as $siteData) {
+        $site_name = $siteData['site_name'];
+        $site_fav = $siteData['site_fav'];
+        $site_logo = $siteData['site_logo'];
+        $site_footer = $siteData['site_footer'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,9 +65,8 @@ $page =  ucwords($page); # Capitalize Words
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><?php echo $page . " | Hassan Khan" ?></title>
-    <!-- Bootstrap -->
-    <link rel="icon" type="image/x-icon" href="./admin/images/fav.jpg">
+    <title><?php echo $page . " - " . $site_name . " | Hassan Khan" ?></title>
+    <link rel="icon" type="image/x-icon" href="./admin/images/<?php echo $site_fav ? $site_fav : 'fav.jpg' ?>">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="css/font-awesome.css">
@@ -72,7 +83,7 @@ $page =  ucwords($page); # Capitalize Words
             <div class="row">
                 <!-- LOGO -->
                 <div class=" col-md-offset-4 col-md-4">
-                    <a href="<?php echo $BASE_URL ?>" id="logo"><img src="./admin/images/news.jpg"></a>
+                    <a href="<?php echo $BASE_URL ?>" id="logo"><img src="./admin/images/<?php echo $site_logo ? $site_logo : 'news.jpg' ?>"></a>
                 </div>
                 <!-- /LOGO -->
             </div>
