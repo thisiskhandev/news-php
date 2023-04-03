@@ -22,15 +22,23 @@ $result = mysqli_query($conn, $sql) or die("Query failed: Setting fetch");
                             </div>
                             <div class="form-group">
                                 <label for="site_footer">Copyright Text (Footer)</label>
-                                <input type="text" name="site_footer" class="form-control" autocomplete="off" value="<?php echo $keys['site_footer'] ?>" required>
+                                <input type="text" name="site_footer" class="form-control" autocomplete="off" value='<?php echo $keys["site_footer"] ?>' required>
                             </div>
                             <div class="form-group">
-                                <label for="">Post image</label>
-                                <div>
+                                <label for="site_fav">Site Fav Icon</label>
+                                <div style="margin: 10px 0;">
+                                    <img src="./images/<?php echo $keys['site_fav'] ?>" alt="Old Fav Icon" width="45">
+                                    <input type="hidden" name="old-fav" value="<?php echo $keys['site_fav'] ?>" readonly>
+                                </div>
+                                <input type="file" name="new-fav" accept=".png, .jpg, .jpeg">
+                            </div>
+                            <div class="form-group">
+                                <label for="site_logo">Site Logo</label>
+                                <div style="margin: 10px 0;">
                                     <img src="./images/<?php echo $keys['site_logo'] ?>" alt="Old Logo" width="150">
                                     <input type="hidden" name="old-logo" value="<?php echo $keys['site_logo'] ?>" readonly>
                                 </div>
-                                <input type="file" name="new-logo" accept=".png, .jpg, .jpeg" required>
+                                <input type="file" name="new-logo" accept=".svg, .png, .jpg, .jpeg">
                             </div>
                             <input type="submit" name="submit" class="btn btn-primary" value="Save" required />
                         </form>

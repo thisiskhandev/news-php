@@ -10,6 +10,7 @@ $resultSetting = mysqli_query($conn, $sqlSetting) or die("Query failed: Logo & c
 if (mysqli_num_rows($resultSetting) > 0) {
     foreach ($resultSetting as $siteData) {
         $site_name = $siteData['site_name'];
+        $site_fav = $siteData['site_fav'];
         $site_logo = $siteData['site_logo'];
         $site_footer = $siteData['site_footer'];
     }
@@ -24,6 +25,7 @@ if (mysqli_num_rows($resultSetting) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $site_name ? $site_name : "NEWS" ?> | ADMIN Panel</title>
+    <link rel="icon" type="image/x-icon" href="./images/<?php echo $site_fav ? $site_fav : 'fav.jpg' ?>">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- Font Awesome Icon -->
@@ -43,7 +45,7 @@ if (mysqli_num_rows($resultSetting) > 0) {
             <div class="row flex_center">
                 <!-- LOGO -->
                 <div class="col-md-4">
-                    <a href="post.php"><img class="logo" class="img-fluid" width="200" src="images/<?php echo $site_logo ? $site_logo : 'news.jpg' ?>"></a>
+                    <a href="post.php"><img class="logo" class="img-fluid" width="100" src="images/<?php echo $site_logo ? $site_logo : 'news.jpg' ?>"></a>
                 </div>
                 <!-- /LOGO -->
                 <!-- LOGO-Out -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2023 at 02:47 AM
+-- Generation Time: Apr 03, 2023 at 10:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -94,16 +94,17 @@ INSERT INTO `post` (`post_id`, `title`, `excerpt`, `description`, `category`, `p
 
 CREATE TABLE `settings` (
   `site_name` varchar(50) NOT NULL DEFAULT 'News',
-  `site_logo` varchar(50) NOT NULL DEFAULT 'news.jpg',
-  `site_footer` varchar(255) NOT NULL DEFAULT 'Powered by Hassan Khan'
+  `site_fav` varchar(100) NOT NULL DEFAULT 'fav.jpg',
+  `site_logo` varchar(100) NOT NULL DEFAULT 'news.jpg',
+  `site_footer` varchar(50) NOT NULL DEFAULT 'Powered by Hassan Khan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`site_name`, `site_logo`, `site_footer`) VALUES
-('News', 'news.jpg', 'Powered by Hassan Khan');
+INSERT INTO `settings` (`site_name`, `site_fav`, `site_logo`, `site_footer`) VALUES
+('CMS', 'fav-news4.png', 'sky-logo.png', 'All rights reserved to <a href=\"#\">Hassan Khan</a>');
 
 -- --------------------------------------------------------
 

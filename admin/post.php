@@ -125,10 +125,5 @@ if ($_SESSION['user_role'] == 1) {
         </div>
     </div>
 </div>
-<?php
-echo date("Y") . "\n";
-sleep(10);
-echo date("Y");
 
-?>
 <?php include "footer.php"; ?>
